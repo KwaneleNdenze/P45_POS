@@ -1,0 +1,39 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Products</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+<div class="pb-5 pt-5">
+<%= link_to 'Add New Product', new_product_path, class: 'btn btn-outline-success' %>
+</div>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Item Description</th>
+      <th scope="col">Item Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= product.item_name %></td>
+      <td><%= product.description %></td>
+      <td><%= product.price%></td>
+      <td>
+        <%= link_to 'Show', product_path(product), class: 'btn btn-sm btn-info' %> | 
+        <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-sm btn-primary' %> | 
+        <%= link_to 'Destroy', product_path(product), class: 'btn btn-sm btn-danger',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      
+      </td>
+      
+    </tr>
+  <% end %>
+    
+    
+  </tbody>
+</table>
