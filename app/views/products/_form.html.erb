@@ -30,6 +30,11 @@
   </p>
 
   <p>
+  <%= form.label :is_in_stock %>
+  <%= form.check_box(:is_in_stock, {}, :is_in_stock)%>
+  </p>
+
+  <p>
     <%= form.number_field :user_id, id: :product_user_id, class: 'form-control', value: current_user.id, type: :hidden %>
   </p>
  

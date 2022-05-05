@@ -13,4 +13,9 @@
   <%= @product.price %>
 </p>
 
+<p>
+  <strong>In Stock:</strong>
+  <%= @product.is_in_stock %>
+</p>
+
 <%= link_to 'Back To Products', products_path, class: 'btn btn-md btn-info'%>
