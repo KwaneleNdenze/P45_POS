@@ -10,7 +10,12 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-md-6' %>
+    <%= f.email_field :email, autocomplete: "email", class: 'form-control col-md-6' %>
+  </div>
+
+  <div class="field pt-4 pb-3">
+    <%= f.label :role %>
+    <%= f.select :role, User.roles.collect, class: 'form-control col-md-6' %>
   </div>
 
   <div class="field">

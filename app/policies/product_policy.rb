@@ -1,18 +1,21 @@
 class ProductPolicy < ApplicationPolicy
-  def index?
-    true
+  attr_reader :current_user, :product
+
+  def initialize(current_user, product)
+    @current_user = current_user
+    @product = product
   end
- 
+
   def create?
-    user.present?
+    @current_user.manager?
   end
  
   def update?
-    return true if user.present? && user == product.user
+    @current_user.manager?
   end
  
   def destroy?
-    return true if user.present? && user == product.user
+    @current_user.manager?
   end
  
   private

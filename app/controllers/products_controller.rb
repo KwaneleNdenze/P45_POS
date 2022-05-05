@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-    authorize @products
+    
   end
 
   def show
@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    
     @product = Product.new(product_params)
     authorize @product
  

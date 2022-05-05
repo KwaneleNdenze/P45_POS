@@ -33,10 +33,12 @@
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'Products', products_path, class: 'dropdown-item' %> 
-          <a class="dropdown-item" href="#">Another action</a>
+          <%= link_to 'Home', products_path, class: 'dropdown-item' %> 
+          
+          <% if current_user.manager? %>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <%= link_to 'Products', products_path, class: 'dropdown-item' %> 
+          <% end %>
         </div>
       </li>
       <li class="nav-item">
