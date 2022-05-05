@@ -1,15 +1,19 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
     
+    @products = Product.all
+    authorize @products
   end
 
   def show
     @product = Product.find(params[:id])
+    authorize @product
   end
 
   def new 
     @product = Product.new
+    authorize @product
+
   end
 
   def create
@@ -26,11 +30,13 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    authorize @product
   end
 
   def update
     @product = Product.find(params[:id])
  
+    authorize @product
     if @product.update(product_params)
     redirect_to @product, notice: 'Product was successfully updated.'
     else
@@ -40,7 +46,9 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
+    authorize @product
     @product.destroy
+    
  
   redirect_to products_path, notice: 'Product was successfully deleted.'
   end

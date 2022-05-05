@@ -1,9 +1,9 @@
-class ProductPolicy < ApplicationPolicy
-  attr_reader :current_user, :product
+class PurchasePolicy < ApplicationPolicy
+  attr_reader :current_user, :purchase
 
-  def initialize(current_user, product)
+  def initialize(current_user, purchase)
     @current_user = current_user
-    @product = product
+    @purchase = purchase
   end
 
   def index?
@@ -19,7 +19,7 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def create?
-    @current_user.manager?
+    @current_user.cashier?
   end
  
   def update?
