@@ -1,0 +1,14 @@
+.card.text-center.mb-5
+  = form_with(model: [ @purchase], local: true) do |form|
+    .card-header
+      |  Products 
+    .card-body
+      .col-md-12.row[style="margin:auto; float:none"]
+        = form.collection_check_boxes(:product_ids, Product.where(is_in_stock: true), :id, :item_name) do |b|
+          .form-check.form-check-inline
+            = b.check_box
+            = b.label
+    .card-footer.text-muted[style="text-align: right"]
+      = link_to 'Cancel Purchase', purchases_path, class:'btn btn-dark btn-sm'
+      |  | 
+      = form.submit 'Purchase', class: 'btn btn-info btn-sm'

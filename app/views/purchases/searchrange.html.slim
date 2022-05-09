@@ -1,0 +1,21 @@
+.card.text-center
+  .card-header
+    |  Sales 
+  .card-body
+    h5.card-title
+      | Report
+    - @total = 0
+    - @sales.each do |purchase|
+      - Product.where(id: purchase.product_ids).each do |record|
+        - @total = @total + record.price
+    p.card-text.text-left
+      strong
+        | Number of Sales: 
+      = @sales.count
+    p.card-text.text-left
+      strong
+        | Revenue Generated: 
+      |  R
+      = @total
+  .card-footer.text-muted.text-right
+    = link_to "Back", searchform_path ,class: 'btn btn-info'

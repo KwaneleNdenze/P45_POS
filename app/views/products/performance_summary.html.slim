@@ -1,0 +1,24 @@
+.card.text-center
+  .card-header
+    |  Performance Summary 
+  .card-body
+    h5.card-title
+      | Popular Items
+    - @popular_products.each do |product|
+      p.card-text.text-left
+        = product.item_name
+        |  - Purchased 
+        strong
+          =product.sale_count
+        |  times 
+    h5.card-title
+      | Most Returned Items
+    - @unpopular_products.each do |product|
+      p.card-text.text-left
+        = product.item_name
+        |  - Returned 
+        strong
+          = product.return_count
+        |  times 
+  .card-footer.text-muted.text-right
+    = link_to "Back", products_path ,class: 'btn btn-info'

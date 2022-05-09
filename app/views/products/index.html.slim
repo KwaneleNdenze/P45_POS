@@ -1,0 +1,37 @@
+.jumbotron.jumbotron-fluid.mt-5
+  .container
+    h1.display-4
+      | Products
+    p.lead
+      | This is a modified jumbotron that occupies the entire horizontal space of its parent.
+.pb-5.pt-5
+  = link_to 'Add New Product', new_product_path, class: 'btn btn-outline-success'
+table.table.mb-5
+  thead.thead-light
+    tr
+      th[scope="col" style="width: 20%"]
+        | Item Name
+      th[scope="col" style="width: 40%"]
+        | Item Description
+      th[scope="col" style="width: 10%"]
+        | Item Price
+      th[scope="col" style="width: 10%"]
+        | In Stock
+      th[style="width: 20%"]
+  tbody
+    - @products.each do |product|
+      tr
+        td
+          = product.item_name
+        td
+          = product.description
+        td
+          = product.price
+        td
+          = product.is_in_stock
+        td
+          = link_to 'Show', product_path(product), class: 'btn btn-sm btn-info'
+          |  | 
+          = link_to 'Edit', edit_product_path(product), class: 'btn btn-sm btn-primary'
+          |  | 
+          = link_to 'Destroy', product_path(product), class: 'btn btn-sm btn-danger', :method => :delete, data: { confirm: 'Are you sure?' }

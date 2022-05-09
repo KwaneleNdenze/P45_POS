@@ -10,6 +10,10 @@ class PurchasePolicy < ApplicationPolicy
     @current_user.manager?
   end
 
+  def searchrange?
+    @current_user.manager?
+  end
+
   def show?
     @current_user.manager?
   end

@@ -1,0 +1,33 @@
+.jumbotron.jumbotron-fluid.mt-5
+  .container
+    h1.display-4
+      | Purchases
+    p.lead
+      | This is a modified jumbotron that occupies the entire horizontal space of its parent.
+.pb-5.pt-5
+  = link_to 'Make New Purchase', new_purchase_path, class: 'btn btn-outline-success'
+table.table
+  thead.thead-light
+    tr
+      th[scope="col" style="width:20%"]
+        | Item Name
+      th[scope="col" style="width:40%"]
+        | Item Description
+      th[scope="col" style="width:10%"]
+        | Item Price
+      th[style="width:30%"]
+  tbody
+    - @purchases.each do |purchase|
+      - Product.where(id: purchase.product_ids).each do |record|
+        tr
+          td
+            = record.item_name
+          td
+            = record.description
+          td
+            | R
+            = record.price
+          td
+            = link_to 'Show', purchase_path(purchase), class:'btn btn-info'
+            |  | 
+            = link_to 'Return', return_item_path(record), class:'btn btn-warning text-white', data: { confirm: 'Are you sure you want to return item?' }

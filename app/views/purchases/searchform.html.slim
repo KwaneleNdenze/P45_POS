@@ -1,0 +1,23 @@
+= form_tag("/searchrange", method: "get") do
+  .card.text-center
+    .card-header
+      |  Generate Report 
+    .card-body
+      h5.card-title
+        | Search
+      p
+        = label_tag(:q, "Search by date range: ")
+      p
+        = label_tag(:q, "Start")
+        br
+        = datetime_select("purchases", "start_date")
+      p
+        = label_tag(:q, "End")
+        br
+        = datetime_select("purchases", "end_date")
+      p
+
+    .card-footer.text-muted.text-right
+      = link_to "Back To Products", products_path ,class: 'btn btn-info'
+      |  | 
+      = submit_tag("Search", class:'btn btn-dark')

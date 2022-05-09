@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 
   def new 
     @product = Product.new
+    
     authorize @product
 
   end
@@ -44,6 +45,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def performance_summary
+    @popular_products = Product.where("sale_count > ?", 1)
+    @unpopular_products = Product.where("return_count > ?", 1)
+  end
+
+  def return_item
+    @product = Product.find(params[:id])
+    @product.increment!(:return_count)
+    redirect_to purchases_path, notice: 'Product was successfully returned.'
+  end
+
   def destroy
     @product = Product.find(params[:id])
     authorize @product
@@ -55,7 +67,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:item_name, :description, :price, :user_id, :is_in_stock)
+    params.require(:product).permit(:item_name, :description, :price, :user_id, :is_in_stock, :sale_count, :return_count)
   end
 
 end

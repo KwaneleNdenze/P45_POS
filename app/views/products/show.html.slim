@@ -1,0 +1,14 @@
+.jumbotron.mt-5
+  h1.display-4
+    = @product.item_name
+    |  - R
+    = @product.price
+  p.lead
+    = @product.description
+  p
+    |  In Stock: 
+    = @product.is_in_stock
+  hr.my-4
+  = link_to 'Back To Products', products_path, class: 'btn btn-md btn-info'
+  |  | 
+  = link_to 'Edit Product', edit_product_path(@product), class:'btn btn-md btn-warning text-white'

@@ -1,0 +1,27 @@
+.jumbotron.jumbotron-fluid.mt-5
+  .container
+    h1.display-4.text-center
+      | Kwanele's Antique Store POS System
+    - if user_signed_in?
+      p.lead.text-center
+        | What Would You Like To Do? Select Option Below
+    - else
+      p.lead.text-center
+        | Managers and Cashiers need to sign in
+    div[style="text-align: center"]
+      - if user_signed_in?
+        - if current_user.manager?
+          = link_to 'Add New Product', new_product_path, class: 'btn btn-md btn-dark'
+          |  | 
+          = link_to 'Go To Inventory', products_path, class: 'btn btn-md btn-dark'
+          |  | 
+          = link_to 'Generate Report', searchform_path, class: 'btn btn-md btn-dark'
+          |  | 
+          = link_to 'Performance Summary', performance_summary_path, class: 'btn btn-md btn-dark'
+        - elsif current_user.cashier?
+          = link_to 'Record A Purchase', new_purchase_path, class: 'btn btn-md btn-dark'
+          |  | 
+          = link_to 'Go To Purchases History', purchases_path, class: 'btn btn-md btn-dark'
+        - else
+
+      - else

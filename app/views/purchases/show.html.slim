@@ -1,0 +1,18 @@
+.card.text-center
+  .card-header
+    |  Featured 
+  .card-body
+    h5.card-title
+      | Reciept
+    - @total = 0
+    - @purchase.products.each do |purchase|
+      - @total = @total + purchase.price
+      p.card-text.text-left
+        = purchase.item_name
+        |  - R
+        = purchase.price
+  .card-footer.text-muted.text-right
+    p
+      | Total Price: R
+      = @total
+    = link_to "Back To Purchases", purchases_path ,class: 'btn btn-info'
